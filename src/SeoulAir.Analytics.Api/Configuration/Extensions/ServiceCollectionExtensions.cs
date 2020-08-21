@@ -9,6 +9,5 @@ namespace SeoulAir.Analytics.Api.Configuration.Extensions
             services.AddSwaggerGen();
             return services;
         }
-
     }
 }

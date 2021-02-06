@@ -9,6 +9,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoulAir.Analytics.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoulAir.Analytics.Domain.Services", "src\SeoulAir.Analytics.Domain.Services\SeoulAir.Analytics.Domain.Services.csproj", "{3BF087B5-49A7-41D1-A590-7C3903EE8B77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoulAir.Analytics.Repositories", "src\SeoulAir.Analytics.Repositories\SeoulAir.Analytics.Repositories.csproj", "{CA7F29F5-B301-4318-B641-C5EB3B8F002E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{56641A25-A7B7-46E1-91AB-67B1DBBDBC78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{54864D11-068A-4545-801A-9C0C4420D0B5}"
+ProjectSection(SolutionItems) = preProject
+	Dockerfile = Dockerfile
+	docker-compose.yml = docker-compose.yml
+	README.md = README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,11 +38,21 @@ Global
 		{3BF087B5-49A7-41D1-A590-7C3903EE8B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF087B5-49A7-41D1-A590-7C3903EE8B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF087B5-49A7-41D1-A590-7C3903EE8B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA7F29F5-B301-4318-B641-C5EB3B8F002E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7F29F5-B301-4318-B641-C5EB3B8F002E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7F29F5-B301-4318-B641-C5EB3B8F002E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7F29F5-B301-4318-B641-C5EB3B8F002E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E069771D-BE0F-4451-83B3-6C635B9F6B7A}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{58B4CA39-20F6-482D-85C6-62E7E117CC4D} = {56641A25-A7B7-46E1-91AB-67B1DBBDBC78}
+		{ACB7A250-6EAB-4D23-A7BC-909C4AF5A9AB} = {56641A25-A7B7-46E1-91AB-67B1DBBDBC78}
+		{3BF087B5-49A7-41D1-A590-7C3903EE8B77} = {56641A25-A7B7-46E1-91AB-67B1DBBDBC78}
+		{CA7F29F5-B301-4318-B641-C5EB3B8F002E} = {56641A25-A7B7-46E1-91AB-67B1DBBDBC78}
 	EndGlobalSection
 EndGlobal

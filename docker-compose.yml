@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  seoulair-analytics:
+    container_name: seoulair-analytics
+    image: seoulair-analytics
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    network_mode: bridge
+    ports:
+      - 5700:5700
+    links:
+      - seoulair-analytics-db
+
+  seoulair-analytics-db:
+    container_name: seoulair-analytics-db
+    image: mongo
+    command: mongod --port 27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 5702:27017
+    network_mode: bridge
+
+  seoulair-analytics-mongo-express:
+    image: mongo-express
+    container_name: seoulair-analytics-mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_SERVER: seoulair-analytics-db
+    ports:
+      - 5701:8081
+    network_mode: bridge
+    links:
+      - seoulair-analytics-db

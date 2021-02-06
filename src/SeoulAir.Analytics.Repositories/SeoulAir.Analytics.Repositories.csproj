@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>7.3</LangVersion>
+        <AssemblyName>SeoulAir.Analytics.Repositories</AssemblyName>
+        <RootNamespace>SeoulAir.Analytics.Repositories</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
+      <PackageReference Include="MongoDB.Driver" Version="2.11.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SeoulAir.Analytics.Domain\SeoulAir.Analytics.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

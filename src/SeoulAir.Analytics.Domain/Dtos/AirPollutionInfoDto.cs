@@ -1,5 +1,4 @@
-﻿
-namespace SeoulAir.Analytics.Domain.Dtos
+﻿namespace SeoulAir.Analytics.Domain.Dtos
 {
     public class AirPollutionInfoDto
     {

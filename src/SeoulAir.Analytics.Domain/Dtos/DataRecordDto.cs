@@ -2,12 +2,10 @@
 
 namespace SeoulAir.Analytics.Domain.Dtos
 {
-    public class RawDataInstanceDto
+    public class DataRecordDto
     {
         public DateTime MeasurementDate { get; set; }
-
-        public StationInfoDto StationInfo { get; set; }
-
+        public ushort StationCode { get; set; }
         public AirPollutionInfoDto AirPollutionInfo { get; set; }
     }
 }

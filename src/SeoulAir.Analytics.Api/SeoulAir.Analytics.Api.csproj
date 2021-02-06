@@ -4,16 +4,24 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SeoulAir.Analytics.Domain.Services\SeoulAir.Analytics.Domain.Services.csproj" />
     <ProjectReference Include="..\SeoulAir.Analytics.Domain\SeoulAir.Analytics.Domain.csproj" />
+    <ProjectReference Include="..\SeoulAir.Analytics.Repositories\SeoulAir.Analytics.Repositories.csproj" />
   </ItemGroup>
 
 

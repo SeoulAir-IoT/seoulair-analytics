@@ -4,12 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SeoulAir.Analytics.Domain\SeoulAir.Analytics.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HelperClasses\" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
   </ItemGroup>
 
 </Project>

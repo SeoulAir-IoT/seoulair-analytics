@@ -12,25 +12,29 @@ namespace SeoulAir.Analytics.Domain.Services
     {
         private readonly ICacheService<DataRecordDto> _cache;
         private readonly IAnalyticsService _analyticsService;
-        
+        private readonly ICommandService _commandService;
+
         public CriticalAlertService(ICrudBaseRepository<CriticalAlertDto> baseRepository,
             ICacheService<DataRecordDto> cache,
-            IAnalyticsService analyticsService) : base(baseRepository)
+            IAnalyticsService analyticsService,
+            ICommandService commandService) : base(baseRepository)
         {
             _cache = cache;
             _analyticsService = analyticsService;
+            _commandService = commandService;
         }
 
         public async Task ProcessNewRecordAsync(DataRecordDto record)
         {
-            _cache.AddNewRecord(record);
-            var cacheElements = _cache.GetCache().Select(singleRecord => singleRecord.AirPollutionInfo).ToArray();
+            _cache.AddNewRecord(record.StationCode, record);
+            var cacheElements = _cache.GetCache(record.StationCode)
+                .Select(singleRecord => singleRecord.AirPollutionInfo).ToArray();
 
             if (cacheElements.Length < 5)
                 return;
-            
-            var badParticles = _analyticsService.SeparateAlertingParticles(_analyticsService.Analyze(cacheElements));
 
+            var analyzeResult = _analyticsService.Analyze(cacheElements);
+            var badParticles = _analyticsService.SeparateAlertingParticles(analyzeResult);
             if (badParticles.Any())
             {
                 var criticalAlert = new CriticalAlertDto
@@ -38,14 +42,25 @@ namespace SeoulAir.Analytics.Domain.Services
                     BadParticles = badParticles,
                     MeasurementDate = record.MeasurementDate,
                     StationCode = record.StationCode,
-                    ColorChangedTo = (LightColor) (int) badParticles.Min(particle => particle.Value),
+                    ColorChangedTo = (LightColor) (int) badParticles.Max(particle => particle.Value),
                     DateOfColorChange = DateTime.Now,
-                    StartOfBadMeasurement = _cache.OldestRecord.MeasurementDate,
+                    StartOfBadMeasurement = _cache.GetOldestRecord(record.StationCode).MeasurementDate,
                 };
-
                 await _baseRepository.AddAsync(criticalAlert);
-                //TODO: CHANGE COLOR
+                await ChangeColor(criticalAlert.StationCode, criticalAlert.ColorChangedTo);
             }
+            else
+            {
+                await ChangeColor(record.StationCode,
+                    (LightColor) (int) analyzeResult.ParticleStatus.Max(particle => particle.Value));
+            }
+        }
+
+        private async Task ChangeColor(ushort stationCode, LightColor changedColor)
+        {
+            await _commandService.ExecuteCommandAsync("signal-light-on", stationCode.ToString());
+            await _commandService.ExecuteCommandAsync("change-light-color", stationCode.ToString(),
+                changedColor.ToString());
         }
     }
 }

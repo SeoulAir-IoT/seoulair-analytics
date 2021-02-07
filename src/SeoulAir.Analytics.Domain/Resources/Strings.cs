@@ -8,6 +8,8 @@ namespace SeoulAir.Analytics.Domain.Resources
         public const string ParameterBetweenMessage = "Value of parameter {0} must be between {1} and {2}.";
         public const string PaginationOrderError = "Pagination error. Invalid \"Order By\" option: {0}";
         public const string PaginationFilterError = "Pagination error. Invalid \"Filter by\" option: {0}";
+        public const string InvalidParameterValueMessage = "Value of parameter {0} has invalid value.";
+        public const string RequestBodyGetException = "Http method GET does not support request body.";
 
         #endregion
     }

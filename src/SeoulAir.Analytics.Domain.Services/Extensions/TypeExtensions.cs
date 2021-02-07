@@ -7,12 +7,12 @@ namespace SeoulAir.Analytics.Domain.Services.Extensions
 {
     public static class TypeExtensions
     {
-        public static IEnumerable<PropertyInfo> GetPublicProperties(this Type type)
+        private static IEnumerable<PropertyInfo> GetPublicProperties(this Type type)
         {
             if (!type.IsInterface)
                 return type.GetProperties();
 
-            return (new Type[] { type })
+            return new[] { type }
                 .Concat(type.GetInterfaces())
                 .SelectMany(i => i.GetProperties());
         }

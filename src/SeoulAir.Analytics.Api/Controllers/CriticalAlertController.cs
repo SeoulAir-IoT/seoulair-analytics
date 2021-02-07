@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SeoulAir.Analytics.Domain.Dtos;
-using SeoulAir.Analytics.Domain.Services;
+using SeoulAir.Analytics.Domain.Interfaces.Services;
 
 namespace SeoulAir.Analytics.Api.Controllers
 {
@@ -10,10 +10,10 @@ namespace SeoulAir.Analytics.Api.Controllers
     [Route("api/[controller]")]
     public class CriticalAlertController : ControllerBase
     {
-        private readonly CriticalAlertService _criticalAlertService;
+        private readonly ICriticalAlertService _criticalAlertService;
         private readonly IMapper _mapper;
 
-        public CriticalAlertController(IMapper mapper, CriticalAlertService criticalAlertService)
+        public CriticalAlertController(IMapper mapper, ICriticalAlertService criticalAlertService)
         {
             _mapper = mapper;
             _criticalAlertService = criticalAlertService;

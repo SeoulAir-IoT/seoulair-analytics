@@ -36,7 +36,7 @@ namespace SeoulAir.Analytics.Repositories.Extensions
         /// <summary>
         /// Builds the Queryable functions using a TSource property name.
         /// </summary>
-        public static IOrderedMongoQueryable<T> CallOrderedQueryable<T>(this IMongoQueryable<T> query,
+        private static IOrderedMongoQueryable<T> CallOrderedQueryable<T>(this IMongoQueryable<T> query,
             string methodName, string propertyName,
                 IComparer<object> comparer = null)
         {
@@ -97,7 +97,7 @@ namespace SeoulAir.Analytics.Repositories.Extensions
             }
             var lambdaExpression = Expression.Lambda<Func<T, bool>>(filterBody, filterParam);
 
-            return MongoQueryable.Where(query, lambdaExpression);
+            return query.Where(lambdaExpression);
         }
     }
 }

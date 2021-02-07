@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using static SeoulAir.Analytics.Domain.Resources.Strings;
 
 namespace SeoulAir.Analytics.Api.Configuration.Extensions
 {
@@ -6,12 +7,14 @@ namespace SeoulAir.Analytics.Api.Configuration.Extensions
     {
         public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
         {
-            app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
-                config.SwaggerEndpoint("/swagger/v1/swagger.json","SeoulAir.Analytics API V1");
+                config.SwaggerEndpoint(string.Format(SwaggerEndpoint, OpenApiInfoProjectVersion),
+                    OpenApiInfoProjectName);
                 config.RoutePrefix = string.Empty;
+                config.DocumentTitle = OpenApiInfoTitle;
             });
+            app.UseSwagger();
 
             return app;
         }

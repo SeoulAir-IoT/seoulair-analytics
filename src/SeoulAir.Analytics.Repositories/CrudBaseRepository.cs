@@ -23,13 +23,13 @@ namespace SeoulAir.Analytics.Repositories
             Collection = dbContext.GetCollection<TEntity>();
         }
         
-        public async Task<TDto> AddAsync(TDto dto)
+        public async Task<string> AddAsync(TDto dto)
         {
             TEntity entity = Mapper.Map<TEntity>(dto);
             entity.Id = null;
 
             await Collection.InsertOneAsync(entity);
-            return Mapper.Map<TDto>(entity);
+            return entity.Id;
         }
 
         public async Task UpdateAsync(TDto dto)

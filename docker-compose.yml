@@ -13,6 +13,8 @@ services:
       - 5700:5700
     links:
       - seoulair-analytics-db
+    external_links:
+      - seoulair-command
 
   seoulair-analytics-db:
     container_name: seoulair-analytics-db

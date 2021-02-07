@@ -27,6 +27,8 @@ namespace SeoulAir.Analytics.Api
             services.AddControllers().AddJsonOptions(options =>
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+            services.AddHttpClient();
+            
             services.AddApplicationSettings(Configuration);
 
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
@@ -46,8 +48,6 @@ namespace SeoulAir.Analytics.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

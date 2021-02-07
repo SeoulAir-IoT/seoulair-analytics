@@ -31,7 +31,6 @@ namespace SeoulAir.Analytics.Domain.Services
                 };
                 
                 await _baseRepository.AddAsync(alert);
-                //TODO: NOTIFY FRONTEND SOMEHOW
             }
         }
     }

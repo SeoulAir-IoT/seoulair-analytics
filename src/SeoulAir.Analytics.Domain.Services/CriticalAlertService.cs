@@ -46,7 +46,7 @@ namespace SeoulAir.Analytics.Domain.Services
                     DateOfColorChange = DateTime.Now,
                     StartOfBadMeasurement = _cache.GetOldestRecord(record.StationCode).MeasurementDate,
                 };
-                await _baseRepository.AddAsync(criticalAlert);
+                await BaseRepository.AddAsync(criticalAlert);
                 await ChangeColor(criticalAlert.StationCode, criticalAlert.ColorChangedTo);
             }
             else

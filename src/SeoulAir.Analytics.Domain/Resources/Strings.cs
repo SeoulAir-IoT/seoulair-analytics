@@ -12,5 +12,19 @@ namespace SeoulAir.Analytics.Domain.Resources
         public const string RequestBodyGetException = "Http method GET does not support request body.";
 
         #endregion
+        
+        #region Swagger Documentation
+
+        public const string OpenApiInfoProjectName = "SeoulAir.Analytics API";
+        public const string OpenApiInfoTitle = "SeoulAir Analytics microservice.";
+        public const string OpenApiInfoProjectVersion = "1.0.0";
+        public const string OpenApiInfoDescription
+            = "SeoulAir Analytics is microservice that is part of SeoulAir project.\n" +
+              "For more information visit Gitlab Repository";
+        public const string SwaggerEndpoint = "/swagger/{0}/swagger.json";
+        public const string GitlabContactName = "Gitlab Repository";
+        public const string GitlabRepoUri = "http://gitlab.com/seoulair/seoulair-analytics.git";
+
+        #endregion
     }
 }

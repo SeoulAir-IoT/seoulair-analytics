@@ -30,7 +30,7 @@ namespace SeoulAir.Analytics.Domain.Services
                     BadParticles = badParticles
                 };
                 
-                await _baseRepository.AddAsync(alert);
+                await BaseRepository.AddAsync(alert);
             }
         }
     }

@@ -10,6 +10,8 @@ namespace SeoulAir.Analytics.Repositories.Entities
     {
         public DateTime MeasurementDate { get; set; }
         public ushort StationCode { get; set; }
-        public Dictionary<string, AirParticleStatus> BadParticles { get; set; }
+
+        public Dictionary<string, AirParticleStatus> BadParticles { get; } =
+            new Dictionary<string, AirParticleStatus>();
     }
 }

@@ -6,7 +6,7 @@ namespace SeoulAir.Analytics.Domain.Interfaces.Repositories
     public interface ICrudBaseRepository<TDto>
         where TDto : BaseDtoWithId
     {
-        Task<TDto> AddAsync(TDto entity);
+        Task<string> AddAsync(TDto entity);
         Task UpdateAsync(TDto entity);
         Task DeleteAsync(string id);
         Task<TDto> GetByIdAsync(string id);
